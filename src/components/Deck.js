@@ -12,15 +12,21 @@ const Deck = props => {
   });
 
   const renderCards = () => {
-    return props.data.map(item => {
+    return props.data.map((item, index) => {
+      if (index === 0) {
+        return (
+          <Animated.View
+            key={item.id}
+            style={position.getLayout()}
+            {...panResponder.panHandlers}>
+            {props.renderCard(item)}
+          </Animated.View>
+        );
+      }
       return props.renderCard(item);
     });
   };
-  return (
-    <Animated.View style={position.getLayout()} {...panResponder.panHandlers}>
-      {renderCards()}
-    </Animated.View>
-  );
+  return <View>{renderCards()}</View>;
 };
 
 export default Deck;
