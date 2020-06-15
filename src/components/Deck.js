@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Animated } from 'react-native';
+import { View, Animated } from 'react-native';
 
 const Deck = props => {
   const renderCards = () => {
@@ -9,7 +9,5 @@ const Deck = props => {
   };
   return <View>{renderCards()}</View>;
 };
-
-const styles = StyleSheet.create({});
 
 export default Deck;

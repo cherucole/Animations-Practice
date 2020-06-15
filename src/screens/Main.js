@@ -51,7 +51,7 @@ const Main = props => {
   const renderCard = item => {
     return (
       <Card key={item.id} image={item.uri} title={item.text}>
-        <Text style={{ marginBottom: 10, marginHorizontal: 10, fontSize: 14 }}>
+        <Text style={styles.caption}>
           I can customize my card further with children
         </Text>
         <Button title="Action" />
@@ -69,5 +69,10 @@ export default Main;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  caption: {
+    marginBottom: 10,
+    marginHorizontal: 10,
+    fontSize: 14,
   },
 });
