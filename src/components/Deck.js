@@ -3,6 +3,7 @@ import { View, Animated, PanResponder, Dimensions } from 'react-native';
 
 const SCREEN_WIDTH = Dimensions.get('screen').width;
 const SWIPE_THRESHOLD = SCREEN_WIDTH * 0.25;
+const SWIPE_OUT_DURATION = 250;
 
 const Deck = props => {
   const position = new Animated.ValueXY();
@@ -13,14 +14,22 @@ const Deck = props => {
     },
     onPanResponderRelease: (event, gesture) => {
       if (gesture.dx > SWIPE_THRESHOLD) {
-        console.log('Swipe Right!');
+        forceSwipe('right');
       } else if (gesture.dx < -SWIPE_THRESHOLD) {
-        console.log('Dislike!');
+        forceSwipe('left');
       } else {
         resetPosition();
       }
     },
   });
+  const forceSwipe = direction => {
+    const x = direction === 'right' ? SCREEN_WIDTH * 1.5 : -SCREEN_WIDTH * 1.5;
+    Animated.timing(position, {
+      toValue: { x: x, y: 0 }, //you can use a single x as supported in ES6
+      duration: SWIPE_OUT_DURATION,
+      useNativeDriver: false,
+    }).start();
+  };
 
   const resetPosition = () => {
     Animated.spring(position, {
