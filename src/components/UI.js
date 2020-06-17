@@ -5,8 +5,10 @@ export const Card = props => {
   return (
     <View style={styles.container}>
       <Image source={{ uri: props.image }} style={styles.image} />
-      <Text style={styles.cardTitle}>{props.title}</Text>
-      {props.children}
+      <View style={styles.metadata}>
+        <Text style={styles.cardTitle}>{props.title}</Text>
+        {props.children}
+      </View>
     </View>
   );
 };
@@ -33,6 +35,10 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: '70%',
+  },
+  metadata: {
+    height: '30%',
+    backgroundColor: 'white',
   },
   cardTitle: {
     margin: 10,
