@@ -69,6 +69,9 @@ const Deck = props => {
   };
 
   const renderCards = () => {
+    if (index >= props.data.length) {
+      return props.renderNoMoreCards();
+    }
     return props.data.map((item, i) => {
       if (i < index) {
         return null;

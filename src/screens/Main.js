@@ -48,6 +48,14 @@ const DATA = [
 ];
 
 const Main = props => {
+  const renderNoMoreCards = () => {
+    return (
+      <Card title="All Done!">
+        <Text style={styles.caption}>There is no more content here!</Text>
+        <Button title="Get More" />
+      </Card>
+    );
+  };
   const renderCard = item => {
     return (
       <Card key={item.id} image={item.uri} title={item.text}>
@@ -60,7 +68,11 @@ const Main = props => {
   };
   return (
     <SafeAreaView>
-      <Deck data={DATA} renderCard={renderCard} />
+      <Deck
+        data={DATA}
+        renderCard={renderCard}
+        renderNoMoreCards={renderNoMoreCards}
+      />
     </SafeAreaView>
   );
 };
