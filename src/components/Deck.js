@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Animated,
   PanResponder,
   Dimensions,
   StyleSheet,
+  LayoutAnimation,
+  UIManager,
 } from 'react-native';
 
 const SCREEN_WIDTH = Dimensions.get('screen').width;
@@ -35,6 +37,19 @@ const Deck = props => {
       }
     },
   });
+
+  useEffect(() => {
+    console.log('data updated');
+    setIndex(0);
+  }, [props.data]);
+
+  useEffect(() => {
+    console.log('spring animation');
+    UIManager.setLayoutAnimationEnabledExperimental &&
+      UIManager.setLayoutAnimationEnabledExperimental(true);
+    LayoutAnimation.spring();
+  });
+
   const forceSwipe = direction => {
     const x = direction === 'right' ? SCREEN_WIDTH * 1.5 : -SCREEN_WIDTH * 1.5;
     Animated.timing(position, {
