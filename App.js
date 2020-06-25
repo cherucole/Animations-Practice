@@ -1,9 +1,10 @@
 import React from 'react';
 
-import Main from './src/screens/Main';
+import Tinder from './src/screens/Tinder';
+import Animations from './src/screens/Animations';
 
 const App = () => {
-  return <Main />;
+  return <Animations />;
 };
 
 export default App;

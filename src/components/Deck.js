@@ -111,7 +111,12 @@ const Deck = props => {
         return (
           <View
             key={item.id}
-            style={[styles.cardStyle, { top: 10 * (i - index) }]}>
+            style={[
+              styles.cardStyle,
+              {
+                top: 5 * (i - index),
+              },
+            ]}>
             {props.renderCard(item)}
           </View>
         );

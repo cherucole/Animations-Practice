@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
 
 import Deck from '../components/Deck';
 import { Card, Button } from '../components/UI';
@@ -68,6 +68,7 @@ const Main = props => {
   };
   return (
     <SafeAreaView>
+      <StatusBar barStyle="dark-content" />
       <Deck
         data={DATA}
         renderCard={renderCard}
