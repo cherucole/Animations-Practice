@@ -5,8 +5,11 @@ import Opacity from '../components/Opacity';
 import Translate from '../components/Translate';
 import Scale from '../components/Scale';
 import ColorInterpolate from '../components/ColorInterpolate';
+import Rotate from '../components/Rotate';
+import Spring from '../components/Spring';
+import Decay from '../components/Decay';
 
-const Animations = props => <ColorInterpolate />;
+const Animations = props => <Decay />;
 export default Animations;
 
 const styles = StyleSheet.create({
