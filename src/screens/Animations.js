@@ -8,8 +8,9 @@ import ColorInterpolate from '../components/ColorInterpolate';
 import Rotate from '../components/Rotate';
 import Spring from '../components/Spring';
 import Decay from '../components/Decay';
+import Parallel from '../components/Parallel';
 
-const Animations = props => <Decay />;
+const Animations = props => <Parallel />;
 export default Animations;
 
 const styles = StyleSheet.create({
