@@ -9,8 +9,9 @@ import Rotate from '../components/Rotate';
 import Spring from '../components/Spring';
 import Decay from '../components/Decay';
 import Parallel from '../components/Parallel';
+import Onboarder from '../components/Onboarder';
 
-const Animations = props => <Parallel />;
+const Animations = props => <Onboarder />;
 export default Animations;
 
 const styles = StyleSheet.create({
