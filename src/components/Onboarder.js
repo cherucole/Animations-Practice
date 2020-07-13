@@ -7,7 +7,12 @@ import {
   StatusBar,
   Alert,
 } from 'react-native';
-import { onScrollEvent, useValue, interpolateColor } from 'react-native-redash';
+import {
+  onScrollEvent,
+  useValue,
+  interpolateColor,
+  useScrollHandler,
+} from 'react-native-redash';
 import Animated from 'react-native-reanimated';
 
 import Slide, { SLIDE_HEIGHT } from './Slide';
@@ -50,8 +55,7 @@ const slides = [
 
 const Onboarder = props => {
   const scroll = useRef(null);
-  const x = useValue(0);
-  const onScroll = onScrollEvent({ x });
+  const { scrollHandler, x } = useScrollHandler({ x });
   const backgroundColor = interpolateColor(x, {
     inputRange: slides.map((_, i) => i * width),
     outputRange: slides.map(slide => slide.color),
@@ -68,8 +72,7 @@ const Onboarder = props => {
           decelerationRate="fast"
           showsHorizontalScrollIndicator={false}
           bounces={false}
-          scrollEventThrottle={1}
-          {...{ onScroll }}>
+          {...scrollHandler}>
           {slides.map(({ title }, index) => (
             <Slide key={index} {...{ title }} right={!!(index % 2)} />
           ))}
