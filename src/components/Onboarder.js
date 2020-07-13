@@ -56,6 +56,8 @@ const slides = [
 const Onboarder = props => {
   const scroll = useRef(null);
   const { scrollHandler, x } = useScrollHandler({ x });
+  //we use interpolate color as it accepts hex values as inputs unlike
+  //official naimated which only accepts rgba
   const backgroundColor = interpolateColor(x, {
     inputRange: slides.map((_, i) => i * width),
     outputRange: slides.map(slide => slide.color),
