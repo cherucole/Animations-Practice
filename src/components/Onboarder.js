@@ -16,11 +16,11 @@ import {
 import Animated from 'react-native-reanimated';
 
 import Slide, { SLIDE_HEIGHT } from './Slide';
-import Subslide from './Subslide';
+import Subslide, { Dot } from './Subslide';
 
 const { width } = Dimensions.get('window');
 const BORDER_RADIUS = 75;
-const { multiply } = Animated;
+const { multiply, divide } = Animated;
 
 const slides = [
   {
@@ -82,29 +82,35 @@ const Onboarder = props => {
         <Animated.View
           style={{ ...StyleSheet.absoluteFillObject, backgroundColor }}
         />
-        <Animated.View
-          style={[
-            styles.footerContent,
-            {
+        <View style={styles.footerContent}>
+          <View style={{ ...styles.pagination, width }}>
+            {slides.map((_, index) => (
+              <Dot key={index} currentIndex={divide(x, width)} {...{ index }} />
+            ))}
+          </View>
+          <Animated.View
+            style={{
+              flex: 1,
+              flexDirection: 'row',
               width: width * slides.length,
               transform: [{ translateX: multiply(x, -1) }],
-            },
-          ]}>
-          {slides.map(({ subtitle, description }, index) => (
-            <Subslide
-              key={index}
-              onPress={() => {
-                if (scroll.current) {
-                  scroll.current
-                    .getNode()
-                    .scrollTo({ x: width * (index + 1), animated: true });
-                }
-              }}
-              {...{ subtitle, description }}
-              last={index === slides.length - 1}
-            />
-          ))}
-        </Animated.View>
+            }}>
+            {slides.map(({ subtitle, description }, index) => (
+              <Subslide
+                key={index}
+                onPress={() => {
+                  if (scroll.current) {
+                    scroll.current
+                      .getNode()
+                      .scrollTo({ x: width * (index + 1), animated: true });
+                  }
+                }}
+                {...{ subtitle, description }}
+                last={index === slides.length - 1}
+              />
+            ))}
+          </Animated.View>
+        </View>
       </View>
     </View>
   );
@@ -127,6 +133,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     borderTopLeftRadius: BORDER_RADIUS,
+  },
+  pagination: {
+    ...StyleSheet.absoluteFillObject,
+    height: BORDER_RADIUS,
+    justifyContent: 'center',
+    alignItems: 'center',
     flexDirection: 'row',
   },
 });
